@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:8.1.0
+    restart: always
+    ports:
+      - "${APP_MYSQL_PORT}:3306"
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./init-scripts/mysql/init.sql:/data/application/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${APP_MYSQL_ROOT_PASS}
+
